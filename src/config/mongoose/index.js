@@ -1,12 +1,26 @@
 import mongoose from 'mongoose';
 import logger from '../../components/logger';
+import { seed as mongooseSeed } from 'mongoose-plugin-seed';
+import '../../api/plan/plan.model';
 
-const connection = mongoose.createConnection('mongodb+srv://aviv:aviv78909@challenge-08lhr.mongodb.net/db');
+const configure = () => {
+    return mongoose.connect(process.env.DB_URI).then(() => {
+        mongoose.connection.once('open', () => {
+            logger.info('Connected to MongoDB');
+        });
 
-connection.on('connected',  () => {
-    logger.info('Connected to db');
-})
+        mongoose.connection.on('error', err => {
+            logger.info('Error while connecting');
+        });
+    });
+}
 
-connection.on('disconnected',  () => {
-    logger.info('Disconnected from db');
-})
+export const seed = () => {
+    return configure().then(() => {
+        return mongooseSeed().then(() => {
+            logger.info('Seed Successful')
+        }).catch(err => {
+            console.log(err);
+        });
+    });
+};

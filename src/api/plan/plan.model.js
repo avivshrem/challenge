@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import { addSeed, seed as mongooseSeed } from 'mongoose-plugin-seed';
+import { addSeed } from 'mongoose-plugin-seed';
 
 let PlanSchema = new mongoose.Schema({
     name: String,
-    ordersPercent: Number,
+    orderPercent: Number,
     signPercent: Number,
     places: Number
 });
@@ -11,40 +11,34 @@ let PlanSchema = new mongoose.Schema({
 let Plan = mongoose.model('Plan', PlanSchema);
 
 addSeed(Plan, {
-    seed: function () {
+    seed: () => {
         return [
             {
                 name: 'כלי דם',
-                ordersPercent: 30,
-                signPercent: 50,
+                orderPercent: 30,
+                signPercent: 60,
                 places: 100
             },
             {
                 name: 'ברכיים',
-                ordersPercent: 30,
+                orderPercent: 40,
                 signPercent: 50,
-                places: 100
+                places: 80
             },
             {
                 name: 'מוח',
-                ordersPercent: 30,
-                signPercent: 50,
-                places: 100
+                orderPercent: 50,
+                signPercent: 40,
+                places: 90
             },
             {
                 name: 'פלסטיקה',
-                ordersPercent: 30,
-                signPercent: 50,
-                places: 100
+                orderPercent: 60,
+                signPercent: 30,
+                places: 70
             }
         ]
     }
-});
-
-mongooseSeed().then(() => {
-    logger.info('Seed Successful')
-}).catch(err => {
-    console.log(err);
 });
 
 export default Plan;

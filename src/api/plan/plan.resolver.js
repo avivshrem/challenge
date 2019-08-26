@@ -1,6 +1,10 @@
 export default {
     Query: {
-        plans: async (parent, args, context) => {
+        plans: async (parent, args, {models}) => {
+            return await models.plan.find({});
+            
+        },
+        plan: async(parent, {id}, context) => {
             return [{
                 id: 1,
                 name: '1',

@@ -11,7 +11,7 @@ extend type Mutation {
 }
 
 type Plan {
-    id: ID!
+    _id: ID!
     name: String!,
     orderPercent: Int!,
     signPercent: Int!,
