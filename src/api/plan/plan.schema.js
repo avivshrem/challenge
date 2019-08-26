@@ -2,8 +2,8 @@ import {gql} from 'apollo-server-express';
 
 export default gql`
 extend type Query {
-    plans: [Plan!]
-    plan(id: ID!): Plan
+    AllPlans: [Plan!]
+    planById(_id: ID!): Plan
 }
 
 extend type Mutation {

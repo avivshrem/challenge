@@ -1,17 +1,17 @@
+import { model } from "mongoose";
+
 export default {
     Query: {
-        plans: async (parent, args, {models}) => {
+        AllPlans: async (parent, args, { models }) => {
             return await models.plan.find({});
-            
+
         },
-        plan: async(parent, {id}, context) => {
-            return [{
-                id: 1,
-                name: '1',
-                orderPercent: 1,
-                signPercent: 1,
-                places: 1
-            }]
-        }
-    }
+        planById: async (parent, {_id}, { models }) => {
+            const array = await models.plan.find({});
+            var result = array.find(function (plan) {
+                return plan._id == _id
+            });
+            return result;
+        },
+    },
 }
