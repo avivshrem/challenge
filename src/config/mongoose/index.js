@@ -17,10 +17,12 @@ const configure = () => {
 
 export const seed = () => {
     return configure().then(() => {
-        return mongooseSeed().then(() => {
-            logger.info('Seed Successful')
-        }).catch(err => {
-            console.log(err);
-        });
+        if (process.env.SEED_DB === 'true') {
+            return mongooseSeed().then(() => {
+                logger.info('Seed Successful')
+            }).catch(err => {
+                console.log(err);
+            });
+        }
     });
 };

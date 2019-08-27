@@ -2,8 +2,12 @@ import {gql} from 'apollo-server-express';
 
 export default gql`
 extend type Query {
-    AllPlans: [Plan!]
-    planById(_id: ID!): Plan
+    plans: [Plan!]
+    plan(_id: ID!): Plan!
+    planByName(name: String!): Plan!
+    sortByOrderPercent: [Plan!]
+    sortByPlaces: [Plan!]
+    sortBySignPercent: [Plan!]
 }
 
 extend type Mutation {
