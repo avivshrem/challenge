@@ -3,7 +3,7 @@ import {gql} from 'apollo-server-express';
 export default gql`
 extend type Query {
     plans: [Plan!]
-    plan(_id: ID!): Plan!
+    planByID(_id: ID!): Plan!
     planByName(name: String!): Plan!
     sortByOrderPercent: [Plan!]
     sortByPlaces: [Plan!]
